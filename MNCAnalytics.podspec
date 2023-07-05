@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MNCAnalytics'
-  s.version          = '1.0.3'
+  s.version          = '1.0.4'
   s.summary          = 'This is POD version of MNC Analytics'
 
 # This description is used to generate tags and improve search results.
@@ -30,17 +30,16 @@ TODO: Add long description of the pod here.
 
   s.ios.deployment_target = '9.0'
   s.requires_arc = true
-  s.preserve_paths = 'MNCAnalytics/**/*'
-  s.public_header_files = 'MNCAnalytics/Classes/*.h'
-  s.source_files ='MNCAnalytics/Classes/**/*.{h,m}'
-  s.header_mappings_dir = 'MNCAnalytics/Classes'
-  
-  # s.libraries = 'z', 'iconv'
-  # ,'jre_emul'
   s.static_framework = true
 
-  s.public_header_files = 'j2objc_lib/include/**/*.h'
-  s.source_files = 'j2objc_lib/include/**/*.h'
+  # s.preserve_paths = 'MNCAnalytics/**/*'
+  s.public_header_files = 'Classes/*.h'
+  # s.source_files ='MNCAnalytics/Classes/**/*.{h,m}'
+  # s.header_mappings_dir = 'MNCAnalytics/Classes'
+  
+
+  # s.public_header_files = 'j2objc_lib/include/**/*.h'
+  s.source_files = 'j2objc_lib/include/**/*.h', 'Classes/**/*.{h,m}'
   s.header_mappings_dir = 'j2objc_lib/include'
 
   # 'HEADER_SEARCH_PATHS' => '"${PODS_ROOT}/j2objc_lib/include"'
@@ -51,6 +50,8 @@ TODO: Add long description of the pod here.
     # 'LIBRARY_SEARCH_PATHS' => '"${PODS_ROOT}/Classes/Headers/include"',
     # 'OTHER_LDFLAGS' => '"-ObjC"'
   }
+  s.compiler_flags = '-Wno-nullability-completeness'
+  # s.vendored_libraries = 'j2objc_lib/lib/libjre_emul.a'
   
   # s.pod_target_xcconfig = { 'INCLUDED_ARCHS[sdk=iphoneos*]' => ''}
   # s.pod_target_xcconfig = { 'INCLUDED_ARCHS[sdk=iphonesimulator*]' => 'i386'}
@@ -62,27 +63,8 @@ TODO: Add long description of the pod here.
   #   'CLANG_CXX_LIBRARY' => 'libc++',
   #   'CLANG_CXX_LANGUAGE_STANDARD' => 'gnu++0x'
   # }
-  s.compiler_flags = '-Wno-nullability-completeness'
-  # s.pod_target_xcconfig = { 
-  #   'LIBRARY_SEARCH_PATHS' => 'j2objc_lib/lib',
-  #   'HEADER_SEARCH_PATHS' => 'j2objc_lib/include',
-  #   # 'CLANG_ENABLE_MODULES' => 'YES',
-  #   # 'OTHER_LDFLAGS' => '"-fobjc-arc"'
-  # }
-  # s.user_target_xcconfig = { 
-  #   # 'LIBRARY_SEARCH_PATHS' => 'j2objc_lib/lib',
-  #   'HEADER_SEARCH_PATHS' => 'j2objc_lib/include',
-  #   # 'CLANG_ENABLE_MODULES' => 'YES',
-  #   # 'OTHER_LDFLAGS' => '"-fobjc-arc"'
-  # }
   # s.pod_target_xcconfig = { 'ENABLE_BITCODE' => 'YES' }
   # s.user_target_xcconfig = { 'EXCLUDED_ARCHS[sdk=iphonesimulator*]' => 'arm64' }
   # s.user_target_xcconfig = { 'ENABLE_BITCODE' => 'YES' }
-
-  # s.resource_bundles = {
-  #   'MNCAnalytics' => ['MNCAnalytics/Assets/*.png']
-  # }
-
-  # s.public_header_files = 'MNCAnalytics/Classes/MncDigitalAnalytics.h'
   # s.dependency 'j2objc-mnca', '~> 2.8'
 end
