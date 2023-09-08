@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'MNCAnalytics'
-  s.version          = '1.2.3'
+  s.version          = '1.2.4'
   s.summary          = 'This is POD version of MNC Analytics'
 
 # This description is used to generate tags and improve search results.
@@ -28,7 +28,7 @@ Pod::Spec.new do |s|
   s.source           = { :git => 'https://github.com/fepriyadi/MNCAnalytics.git', :tag => s.version.to_s }
   # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
 
-  s.ios.deployment_target = '9.0'
+  s.ios.deployment_target = '11.0'
   s.requires_arc = false
   s.static_framework = true
   s.libraries = 'icucore','z', 'iconv','jre_emul','json'
@@ -81,31 +81,6 @@ Pod::Spec.new do |s|
       cp ${PWD}/j2objc_lib/lib/libjre_emul.a MNCAnalytics/lib
       cp ${PWD}/j2objc_lib/lib/libjson.a MNCAnalytics/lib
       
-      APPDIR=${PWD}/j2objc
-      JAVASRC=java
-      OBJCDIR=objc
-      JAVAPAK=com\.mncdigital\.analytics
-      JAVA_HOME=/Users/fep/Library/Java/JavaVirtualMachines/liberica-1.8.0_345
-
-      echo "" && echo "Java to ObjC translating..." && echo ""
-
-      if [ -d "${APPDIR}/${OBJCDIR}" ]; then
-        rm -r "${APPDIR}/${OBJCDIR}"
-      fi
-      mkdir ${APPDIR}/${OBJCDIR}
-
-      if [ -d "${PWD}/dist" ]; then
-        rm -r "${PWD}/dist"
-      fi
-
-      ln -s ${PWD}/j2objc_lib dist
-
-      cd dist
-      ./j2objc -classpath lib/json.jar --no-package-directories -use-arc --prefix ${JAVAPAK}= -d ${APPDIR}/${OBJCDIR} -sourcepath ${APPDIR}/${JAVASRC} `find -L ${APPDIR}/${JAVASRC} -iname '*.java'`
-
-      cd ..
-      cp "j2objc/bridger/MncDigitalAnalytics.h" "j2objc/objc/"
-      cp "j2objc/bridger/MncDigitalAnalytics.m" "j2objc/objc/"
 
       echo "=======> Building devices..."
       xcodebuild -project ${XCODEPROJECT}.xcodeproj -target ${XCODETARGET} ONLY_ACTIVE_ARCH=YES -configuration ${CONFIG} -sdk iphoneos  
@@ -134,7 +109,7 @@ Pod::Spec.new do |s|
 
       cp "j2objc/objc/TTask.h" "MNCAnalytics/public/"
       cp "j2objc/objc/Core.h" "MNCAnalytics/public/"
-      cp "j2objc/bridger/MncDigitalAnalytics.h" "MNCAnalytics/public/"
+      cp "j2objc/objc/MncDigitalAnalytics.h" "MNCAnalytics/public/"
 
       cp "${OUTDIR}/lib${XCODEPROJECT}.a" "MNCAnalytics/lib/"
 
